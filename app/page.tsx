@@ -1,7 +1,15 @@
-export const metadata = {
-  title: "App Router",
+import { Metadata } from 'next';
+
+type PageProps = {
+  params: {
+    slug: string;
+  };
 };
 
-export default function Page() {
-  return <h1>App Router</h1>;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  return { title: `Post: ${params.slug}` };
+}
+
+export default function Page({ params }: PageProps) {
+  return <h1>Slug: {params.slug}</h1>;
 }
